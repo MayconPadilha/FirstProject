@@ -1,6 +1,9 @@
 package ScreenMatch;
 
+import java.util.ArrayList;
 import ScreenMatch.calculos.CalculadoraDeTempo;
+import ScreenMatch.calculos.FiltroRecomendacao;
+import ScreenMatch.model.Episodio;
 import ScreenMatch.model.Filme;
 import ScreenMatch.model.Serie;
 
@@ -32,6 +35,28 @@ public class Principal {
         calculadora.inclui(outro);
         calculadora.inclui(serie);
 
-        System.out.println("Tempo total: " +calculadora.getTempoTotal());
+        // System.out.println("Tempo total: " + calculadora.getTempoTotal());
+
+        Episodio primeiro = new Episodio();
+        primeiro.setNumero(1);
+        primeiro.setSerie(serie);
+        primeiro.setTotalVisualizacoes(300);
+
+        FiltroRecomendacao filtro = new FiltroRecomendacao();
+        filtro.filtrar(favorito);
+        filtro.filtrar(outro);
+        filtro.filtrar(primeiro);
+
+        ArrayList<Filme> filmes = new ArrayList<>();
+        filmes.add(favorito);
+        filmes.add(outro);
+
+        filmes.size();
+
+        System.out.println("tamanho da lista: " + filmes.size());
+
+        System.out.println("Filme:  " + filmes.get(0).getNome());
+        System.out.println("Filme:  " + filmes.get(1).getNome());
+        // System.out.println("Filme: " + filmes.get(2).getNome());
     }
 }

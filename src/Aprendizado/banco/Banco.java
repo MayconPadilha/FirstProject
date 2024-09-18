@@ -1,4 +1,4 @@
-package banco;
+package Aprendizado.banco;
 import java.util.Scanner;
 
 public class Banco {
