@@ -44,6 +44,7 @@ public class principal {
         System.out.println("\n***********************");
 
         System.out.println("\nSaldo do cartão: " +cartao.getSaldo());
+        leitura.close();
     }
     
 }
