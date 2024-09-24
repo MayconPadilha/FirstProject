@@ -1,5 +1,7 @@
 package ScreenMatch.model;
 
+import ScreenMatch.dto.TituloOmdb;
+
 public class Titulo implements Comparable<Titulo> {
     private String nome;
     private int anoDeLancamento;
@@ -7,6 +9,12 @@ public class Titulo implements Comparable<Titulo> {
     private double somaDasAvaliacoes;
     private int totalDeAvaliacoes;
     private int duracaoEmMinutos;
+
+    public Titulo(TituloOmdb meuTituloOmdb) {
+        this.nome = meuTituloOmdb.title();
+        this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.year());
+        this.duracaoEmMinutos = Integer.valueOf(meuTituloOmdb.runtime().substring(0,2));
+    }
 
     public Titulo(String nome, int anoDeLancamento) {
         this.nome = nome;
@@ -66,4 +74,9 @@ public class Titulo implements Comparable<Titulo> {
     public double pegaMedia(){
         return somaDasAvaliacoes / totalDeAvaliacoes;
     }
+    
+    @Override
+    public String toString() {
+        return "Titulo [nome=" + nome + ", anoDeLancamento=" + anoDeLancamento + ", duracaoEmMinutos=" + duracaoEmMinutos +"]";
+    }   
 }
