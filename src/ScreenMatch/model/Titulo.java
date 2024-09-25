@@ -1,6 +1,6 @@
 package ScreenMatch.model;
 
-import ScreenMatch.dto.TituloOmdb;
+import ScreenMatch.record.TituloOmdb;
 
 public class Titulo implements Comparable<Titulo> {
     private String nome;
@@ -12,6 +12,10 @@ public class Titulo implements Comparable<Titulo> {
 
     public Titulo(TituloOmdb meuTituloOmdb) {
         this.nome = meuTituloOmdb.title();
+
+        if (meuTituloOmdb.year().length() > 4) {
+            throw new ErroDeConversaoDeAnoException("nao foi possivel converter o ano porque tem mais de 4 caracteres");
+        }
         this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.year());
         this.duracaoEmMinutos = Integer.valueOf(meuTituloOmdb.runtime().substring(0,2));
     }
@@ -75,8 +79,9 @@ public class Titulo implements Comparable<Titulo> {
         return somaDasAvaliacoes / totalDeAvaliacoes;
     }
     
-    @Override
     public String toString() {
-        return "Titulo [nome=" + nome + ", anoDeLancamento=" + anoDeLancamento + ", duracaoEmMinutos=" + duracaoEmMinutos +"]";
-    }   
+        return "(nome = " + nome +
+                ", anoDeLancamento = " + anoDeLancamento + "," +
+                " duração = " + duracaoEmMinutos + ")";
+    }  
 }
